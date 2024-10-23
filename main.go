@@ -63,13 +63,23 @@ func main() {
 	}
 	log.Infof("service default config: %v", bs.ServiceName)
 
-	if err := codec.DecodeFromFile("configs/example.toml", &bs); err != nil {
+	var bstoml helloworld.Bootstrap
+	if err := codec.DecodeFromFile("configs/example.toml", &bstoml); err != nil {
 		panic(err)
 	}
-	log.Infof("service toml config: %v", bs.ServiceName)
+	//bstoml.ServiceName = "toml"
+	//if err := codec.EncodeToFile("example.toml", &bstoml); err != nil {
+	//	panic(err)
+	//}
+	log.Infof("service toml config: %v", bstoml.ServiceName)
 
-	if err := codec.DecodeFromFile("configs/example.yml", &bs); err != nil {
+	var bsyml helloworld.Bootstrap
+	if err := codec.DecodeFromFile("configs/example.yml", &bsyml); err != nil {
 		panic(err)
 	}
-	log.Infof("service yaml config: %v", bs.ServiceName)
+	//bsyml.ServiceName = "yaml"
+	//if err := codec.EncodeToFile("example.yml", &bsyml); err != nil {
+	//	panic(err)
+	//}
+	log.Infof("service yaml config: %v", bsyml.ServiceName)
 }
